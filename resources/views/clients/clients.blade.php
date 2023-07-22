@@ -62,16 +62,7 @@
 
                                 <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
 
-                                    <div class="w-150px me-3">
 
-                                        <select id="client_status_selector" class="form-select form-select-solid"
-                                            data-control="select2">
-                                            <option value="Todos">Todos</option>
-                                            <option value="Ativo">Ativo</option>
-                                            <option value="Bloqueado">Bloqueado</option>
-                                        </select>
-
-                                    </div>
 
                                     <a href="{{ route('clients.create') }}" type="button" class="btn btn-primary">Adicionar
                                         Cliente</a>
@@ -144,6 +135,17 @@
                                                             Editar</a>
                                                     </div>
 
+                                                    <div class="menu-item px-3">
+
+                                                        <a data-client-id="{{ $client->id }}"
+                                                            data-client-name="{{ $client->name }}"
+                                                            data-delete-route="{{ route('clients.destroy', $client->id) }}"
+                                                            name="client_delete_button" class="menu-link px-3">
+
+                                                            <i class="fa-solid fa-trash"></i>&nbsp
+                                                            Apagar</a>
+                                                    </div>
+
                                                 </div>
 
                                             </td>
@@ -172,6 +174,7 @@
     @parent
 
     <script src="assets/js/jqmask/jquery.mask.js"></script>
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
     <script name="jQueryMask">
         $(document).ready(function() {
@@ -195,6 +198,82 @@
             $('.sp_celphones').mask(SPMaskBehavior, spOptions);
         });
     </script>
+
+<script name="dataTable">
+    $(document).ready(function() {
+        const tableElement = $("#client_list_table");
+        const searchInput = $("#client_search_input");
+
+        const deleteButton = $("[name='client_delete_button']");
+
+        var table = $(tableElement).DataTable({
+            lengthChange: false,
+            pageLength: 10,
+            info: false
+        });
+
+        $(searchInput).on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+
+        $(deleteButton).on('click', function() {
+
+            var clientId = $(this).data('client-id');
+            var clientName = $(this).data('client-name');
+            var deleteRoute = $(this).data('delete-route');
+
+            Swal.fire({
+                title: 'Tem certeza de que deseja apagar ' + clientName + ' ?',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar',
+
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-secondary"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log('deletando ' + clientName);
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deleteRoute,
+
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id": clientId,
+
+                            dataType: "json"
+
+                        },
+
+                        success: function(response) {
+                            console.log(response);
+                            window.location = window.location.href;
+                        },
+
+                        error: function() {
+
+
+                        }
+
+                    });
+
+                } else {
+
+                    console.log('Mantendo a cidade');
+                }
+            });
+
+        });
+
+
+
+    });
+</script>
 
 
 @endsection

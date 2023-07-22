@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,7 +14,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::where('deleted', '!=', 1)->get();
         return view('clients.clients',[
             'clients' => $clients
         ]);
@@ -23,7 +25,13 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $cities = City::all();
+        $states = State::all();
+
+        return view('clients.create',[
+            'states' => $states,
+            'cities' => $cities
+        ]);
     }
 
     /**
@@ -31,7 +39,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->form;
+
+        unset($form_data['state']);
+
+        $created_client = Client::create($form_data);
+        return response()->json(['client_id' => $created_client->id]);
     }
 
     /**
@@ -50,9 +63,13 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        $cities = City::all();
+        $states = State::all();
 
         return view('clients.edit',[
-            'client' => $client
+            'client' => $client,
+            'states' => $states,
+            'cities' => $cities
         ]);
     }
 
@@ -61,7 +78,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $form_data = $request->form;
+        unset($form_data['state']);
+        unset($form_data['_token']);
+
+        $updated_client = Client::where('id', '=', $client->id)->update($form_data);
+
+        return response()->json(['client_id' => $client->id, 'data' => $form_data]);
     }
 
     /**
@@ -69,6 +92,10 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+            $client_slug = $client->name . " " . $client->cpf;
+            $client_id = $client->id;
+
+            $client->update(['deleted' => 1]);
+            return response()->json(['message' => 'Deletando o cliente: "' . $client_slug . '" ID: ' . $client_id], 200);
     }
 }

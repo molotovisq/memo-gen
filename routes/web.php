@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('clients.clients');
+    return view('welcome');
 })->name('index');
 
 Route::post('/teste', function (Request $request) {

@@ -140,10 +140,14 @@
                                                     </span>
                                                 </label>
 
-                                                <select name="state" aria-label="Select a Timezone" data-control="select2"
-                                                    data-placeholder="Estado" class="form-select  form-select-solid">
+                                                <select id="client_state_selector" name="state"
+                                                    class="form-select  form-select-solid" >
                                                     <option></option>
-                                                    <option value="1">Piauí</option>
+                                                    @foreach ($states as $state)
+                                                        <option value="{{ $state->id }}">
+                                                            {{ $state->short }} - {{ $state->name }}</option>
+                                                    @endforeach
+
                                                 </select>
                                             </div>
 
@@ -156,10 +160,14 @@
                                                     </span>
                                                 </label>
 
-                                                <select name="state" data-control="select2" data-placeholder="Cidade"
+                                                <select id="client_city_selector" name="city_id"
                                                     class="form-select  form-select-solid">
                                                     <option></option>
-                                                    <option value="1">Teresina</option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->id }}">
+
+                                                            {{ $city->name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
@@ -199,7 +207,7 @@
                                                     </label>
 
                                                     <input type="text" class="form-control form-control-solid"
-                                                        name="number" />
+                                                        name="street_number" />
 
                                                 </div>
 
@@ -304,7 +312,9 @@
             $('.cnpj').mask('00.000.000/0000-00', {
                 reverse: true
             });
-            $('.cpf').mask('000.000.000-00');
+            $('.cpf').mask('000.000.000-00',{
+                clearIfNotMatch: true
+            });
 
             $('.sp_celphones').mask(SPMaskBehavior, spOptions);
         });
@@ -326,15 +336,17 @@
                         }
                     }
                 },
-                cnpj: {
+                rg: {
                     validators: {
                         notEmpty: {
-                            message: 'CNPJ é necessário'
-                        },
-                        stringLength: {
-                            min: 18,
-                            max: 18,
-                            message: 'Por favor, entre com um CNPJ válido'
+                            message: 'Insira um RG válido'
+                        }
+                    }
+                },
+                cpf: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Insira um CPF válido'
                         }
                     }
                 },
@@ -355,14 +367,14 @@
                         }
                     }
                 },
-                'address[street]': {
+                street: {
                     validators: {
                         notEmpty: {
                             message: 'Logradouro é necessário'
                         }
                     }
                 },
-                'address[number]': {
+                street_number: {
                     validators: {
                         notEmpty: {
                             message: 'Número (endereço) é necessário'
@@ -370,7 +382,7 @@
                     }
                 },
 
-                'address[neighbor]': {
+                neighbor: {
                     validators: {
                         notEmpty: {
                             message: 'Bairro é necessário'
@@ -378,7 +390,7 @@
                     }
                 },
 
-                'address[cep]': {
+                cep: {
                     validators: {
                         notEmpty: {
                             message: 'CEP é necessário'
@@ -393,7 +405,7 @@
                         }
                     }
                 },
-                city: {
+                city_id: {
                     validators: {
                         notEmpty: {
                             message: 'Cidade é necessário'
@@ -416,7 +428,9 @@
 
         var fv = FormValidation.formValidation(form, options);
 
-
+        $(form).on('change', function(e){
+            fv.validate();
+        });
         $(form).on('submit', function(e) {
 
             console.log("Clicked on Submit");
@@ -425,7 +439,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('teste') }}",
+                        url: "{{ route('clients.store') }}",
 
                         data: {
                             "_token": $('input[name=_token]').val(),
@@ -445,7 +459,7 @@
                                     confirmButton: "btn btn-primary"
                                 }
                             }).then(function() {
-                                //window.location = "{{ route('clients.index') }}"
+                                window.location = "{{ route('clients.index') }}"
                             });
                         },
 
@@ -474,5 +488,14 @@
 
             e.preventDefault();
         })
+    </script>
+
+    <script name="Select2">
+        let stateSelector = $('#client_state_selector').select2({
+            placeholder: "Estado...",
+        });
+        let citySelector = $('#client_city_selector').select2({
+            placeholder: "Cidade...",
+        });
     </script>
 @endsection
