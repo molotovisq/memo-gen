@@ -12,7 +12,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        return view('clients.clients',[
+            'clients' => $clients
+        ]);
     }
 
     /**
@@ -36,7 +39,10 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+
+        return view('clients.view',[
+            'client' => $client
+        ]);
     }
 
     /**
@@ -44,7 +50,10 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+
+        return view('clients.edit',[
+            'client' => $client
+        ]);
     }
 
     /**

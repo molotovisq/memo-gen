@@ -4,7 +4,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-semibold me-1"><script>document.write(new Date().getFullYear())</script>&copy;</span>
-            <a href="https://hotsat.com.br/" target="_blank" class="text-gray-800 text-hover-primary">HotSat Telecomunicações</a>
+            <a href="https://github.com/molotovisq" target="_blank" class="text-gray-800 text-hover-primary">Made with ❤️ by Molotovisq</a>
         </div>
         <!--end::Copyright-->
         <!--begin::Menu-->

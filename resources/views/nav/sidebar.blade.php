@@ -22,6 +22,64 @@
 
             </div>
 
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ getCurrentTabActive('clients', 'here show')}}">
+
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="fa-solid fa-user fs-3"></i>
+                    </span>
+                    <span class="menu-title">Clientes</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion">
+
+                    <div class="menu-item">
+
+                        <a  href="{{ route('clients.index') }}" class="menu-link {{ getCurrentTabActive('clients.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Visão Geral</span>
+                        </a>
+
+                    </div>
+
+                    <div class="menu-item">
+
+                        <a href="{{ route('clients.show', 1) }}" class="menu-link {{ getCurrentTabActive('clients.show') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Ver Cliente</span>
+                        </a>
+
+                    </div>
+
+                    <div class="menu-item">
+
+                        <a href="{{ route('clients.create') }}" class="menu-link {{ getCurrentTabActive('clients.create') }}" >
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Adicionar Cliente</span>
+                        </a>
+
+                    </div>
+
+                    <div class="menu-item">
+
+                        <a  href="{{ route('clients.edit', 1) }}" class="menu-link {{ getCurrentTabActive('clients.edit') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Editar Cliente</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
 
 
         </div>

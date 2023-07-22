@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class City extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public function city()
+    public function state()
     {
-        return $this->belongsTo(City::class, 'city_id', 'id');
+        return $this->belongsTo(State::class, 'state_id', 'id');
     }
 }

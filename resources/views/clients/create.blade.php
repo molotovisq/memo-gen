@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    HSX - Municípios - Criar
+    Memo - Clientes - Criar
 @endsection
 
 @section('base')
@@ -28,16 +28,15 @@
                             <span
                                 class="page-heading d-flex align-items-center justify-content-center text-dark fw-bold fs-3 m-0">
 
-                                <i class="fa-solid fa-building-columns me-1"></i>
-                                <i class="fa-solid fa-plus fs-7 me-3"></i>
+                                <i class="fa-solid fa-user-plus me-2 fs-3"></i>
 
-                                Adicionar Município
+                                Adicionar Cliente
                             </span>
 
                         </div>
 
                         <div class="d-flex align-items-center gap-2 gap-lg-3">
-                            <a href=""
+                            <a href="#"
                                 class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
                                 Pré-Visualização</a>
 
@@ -64,87 +63,26 @@
                                 <div class="card-header pt-7">
 
                                     <div class="card-title">
-                                        <i class="fa-solid fa-list-ul fs-1 me-2"></i>
-                                        <span class="fs-5">Dados do Município</span>
+
+                                        <i class="fa-solid fa-address-card fs-1 me-2"></i>
+                                        <span class="fs-5 fw-bold">Dados do Cliente</span>
                                     </div>
 
                                 </div>
 
                                 <div class="card-body pt-5">
 
-                                    <form id="add_municipio_form" class="form">
+                                    <form id="add_client_form" class="form">
 
                                         <div class="row fv-row mb-5">
-                                            <div class="col-md-4 d-flex justify-content-center align-items-center">
 
-                                                <div name="city_avatar_div" class="mb-1">
-                                                    <label class="fs-6 fw-semibold mb-3 d-flex justify-content-center ms-2">
-                                                        <span>Logo</span>
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Arquivos permitidos: png, jpg, jpeg.">
-                                                            <i class="ki-outline ki-information fs-7"></i>
-                                                        </span>
-                                                    </label>
-
-                                                    <div class="mt-1">
-
-                                                        <style>
-                                                            .image-input-placeholder {
-                                                                background-image: url('assets/media/svg/files/blank-image.svg');
-                                                            }
-
-                                                            [data-bs-theme="dark"] .image-input-placeholder {
-                                                                background-image: url('assets/media/svg/files/blank-image-dark.svg');
-                                                            }
-                                                        </style>
-
-                                                        <div class="image-input image-input-outline image-input-placeholder image-input-empty image-input-empty"
-                                                            data-kt-image-input="true">
-
-                                                            <div class="image-input-wrapper w-120px h-120px"
-                                                                style="background-image: url(''); background-size: contain;">
-                                                            </div>
-
-                                                            <label
-                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                                title="Change avatar">
-                                                                <i class="ki-outline ki-pencil fs-7"></i>
-
-                                                                <input type="file" name="avatar"
-                                                                    accept=".png, .jpg, .jpeg" />
-                                                                <input type="hidden" name="avatar_remove" />
-
-                                                            </label>
-
-                                                            <span
-                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                                title="Cancel avatar">
-                                                                <i class="ki-outline ki-cross fs-2"></i>
-                                                            </span>
-
-                                                            <span
-                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                                title="Remove avatar">
-                                                                <i class="ki-outline ki-cross fs-2"></i>
-                                                            </span>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-8">
-                                                <div class="fv-row mb-7">
+                                            <div class="col-lg-6">
+                                                <div class="fv-row">
                                                     <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required"
-                                                            title="Entre com o nome do município">Município</span>
+                                                        <span class="required" title="Entre com o nome do cliente">Nome
+                                                            Completo</span>
                                                         <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Entre com o nome do município">
+                                                            title="Entre com o nome do cliente">
                                                             <i class="ki-outline ki-information fs-7"></i>
                                                         </span>
                                                     </label>
@@ -153,46 +91,83 @@
                                                         name="name" />
                                                 </div>
 
-                                                <div class="fv-row mb-7">
-                                                    <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required">Estado</span>
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Entre com o estado">
-                                                            <i class="ki-outline ki-information fs-7"></i>
-                                                        </span>
-                                                    </label>
+                                            </div>
 
-                                                    <select name="state" aria-label="Select a Timezone"
-                                                        data-control="select2" data-placeholder="Estado"
-                                                        class="form-select  form-select-solid">
-                                                        <option></option>
-                                                        <option value="PI">Piauí</option>
-                                                        <option value="MA">Maranhão</option>
-                                                        <option value="CE">Ceará</option>
-                                                        <option value="MT">Mato Grosso</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-3">
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">RG</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Entre com o rg">
+                                                        <i class="ki-outline ki-information fs-7"></i>
+                                                    </span>
+                                                </label>
+
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="rg" />
+
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">CPF</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Entre com o cpf">
+                                                        <i class="ki-outline ki-information fs-7"></i>
+                                                    </span>
+                                                </label>
+
+                                                <input type="text" class="form-control form-control-solid cpf"
+                                                    name="cpf" />
 
                                             </div>
 
                                         </div>
 
-                                        <div class="row fv-row mb-7">
-                                            <div class="col-md-4">
+                                        <div class="separator mb-6"></div>
+
+                                        <div class="row fv-row mb-10 mt-10">
+                                            <div class="d-flex">
+                                                <i class="fa-solid fa-map-location fs-1 me-2"></i>
+                                                <span class="fs-5 fw-bold">Endereço</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row fv-row mb-5">
+                                            <div class="col-lg-6">
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">CNPJ</span>
+                                                    <span class="required">Estado</span>
                                                     <span class="ms-1" data-bs-toggle="tooltip"
-                                                        title="Entre com o cnpj">
+                                                        title="Entre com o estado">
                                                         <i class="ki-outline ki-information fs-7"></i>
                                                     </span>
                                                 </label>
 
-                                                <input type="text" class="form-control form-control-solid cnpj"
-                                                    name="cnpj" />
-
+                                                <select name="state" aria-label="Select a Timezone" data-control="select2"
+                                                    data-placeholder="Estado" class="form-select  form-select-solid">
+                                                    <option></option>
+                                                    <option value="1">Piauí</option>
+                                                </select>
                                             </div>
 
-                                            <div class="col-md-8">
+                                            <div class="col-lg-6">
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Cidade</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Entre com a cidade">
+                                                        <i class="ki-outline ki-information fs-7"></i>
+                                                    </span>
+                                                </label>
+
+                                                <select name="state" data-control="select2" data-placeholder="Cidade"
+                                                    class="form-select  form-select-solid">
+                                                    <option></option>
+                                                    <option value="1">Teresina</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row fv-row mb-7">
+
+                                            <div class="col-lg-6">
 
                                                 <div class="fv-row mb-5">
 
@@ -205,55 +180,51 @@
                                                     </label>
 
                                                     <input type="text" class="form-control form-control-solid"
-                                                        name="address[street]" />
+                                                        name="street" />
 
                                                 </div>
 
                                             </div>
 
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-4">
+                                            <div class="col-lg-2">
 
                                                 <div class="fv-row mb-5">
 
                                                     <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required">Número (endereço)</span>
+                                                        <span class="required">Número</span>
                                                         <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Entre com o número do endereço">
+                                                            title="Entre com o endereço">
                                                             <i class="ki-outline ki-information fs-7"></i>
                                                         </span>
                                                     </label>
 
                                                     <input type="text" class="form-control form-control-solid"
-                                                        name="address[number]" />
+                                                        name="number" />
 
                                                 </div>
 
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-lg-2">
 
-                                                <div class="fv-row mb-7">
+                                                <div class="fv-row mb-5">
 
                                                     <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required">Bairro </span>
+                                                        <span class="required">Bairro</span>
                                                         <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Entre com o bairro ">
+                                                            title="Entre com o endereço">
                                                             <i class="ki-outline ki-information fs-7"></i>
                                                         </span>
                                                     </label>
 
                                                     <input type="text" class="form-control form-control-solid"
-                                                        name="address[neighbor]" />
+                                                        name="neighbor" />
 
                                                 </div>
 
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-lg-2">
 
                                                 <div class="fv-row mb-7">
 
@@ -266,50 +237,7 @@
                                                     </label>
 
                                                     <input type="text" class="form-control form-control-solid"
-                                                        name="address[cep]" />
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-
-                                                <div class="fv-row mb-7">
-
-                                                    <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required">Email</span>
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Entre com o email">
-                                                            <i class="ki-outline ki-information fs-7"></i>
-                                                        </span>
-                                                    </label>
-
-                                                    <input type="text" class="form-control form-control-solid"
-                                                        name="email" id="email" />
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="fv-row mb-7">
-
-                                                    <label class="fs-6 fw-semibold form-label mt-3">
-                                                        <span class="required">Telefone</span>
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            title="Enter the contact's phone number (optional).">
-                                                            <i class="ki-outline ki-information fs-7"></i>
-                                                        </span>
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control form-control-solid sp_celphones"
-                                                        name="phone" />
+                                                        name="cep" />
 
                                                 </div>
 
@@ -371,20 +299,19 @@
                     clearIfNotMatch: true
                 };
 
-            $('.date').mask('00/00/0000');
-            $('.time').mask('00:00:00');
-            $('.date_time').mask('00/00/0000 00:00:00');
+
             $('.cep').mask('00000-000');
             $('.cnpj').mask('00.000.000/0000-00', {
                 reverse: true
             });
+            $('.cpf').mask('000.000.000-00');
 
             $('.sp_celphones').mask(SPMaskBehavior, spOptions);
         });
     </script>
 
     <script name="FormValidation">
-        const form = document.getElementById("add_municipio_form");
+        const form = document.getElementById("add_client_form");
         const submitButton = form.querySelector('button[name="submitButton"]');
         var options = {
             fields: {
@@ -498,7 +425,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('clients.store') }}",
+                        url: "{{ route('teste') }}",
 
                         data: {
                             "_token": $('input[name=_token]').val(),
@@ -510,7 +437,7 @@
                         success: function(response) {
                             console.log(response);
                             Swal.fire({
-                                text: "Município criado com sucesso!",
+                                text: "Cliente adicionado com sucesso!",
                                 icon: "success",
                                 buttonsStyling: !1,
                                 confirmButtonText: "Ok, entendi!",

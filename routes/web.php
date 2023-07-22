@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('clients.clients');
 })->name('index');
+
+Route::post('/teste', function (Request $request) {
+    $data = $request->all();
+    $formData = $data['form'];
+
+    return $formData;
+})->name('teste');
 
 Route::resource('clients', App\Http\Controllers\ClientController::class);

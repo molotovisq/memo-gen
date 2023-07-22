@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('street_number');
             $table->string('neighbor');
             $table->string('cep');
+            $table->string('phone')->nullable();
+            $table->boolean('deleted')->default(0);
             $table->timestamps();
             $table->foreign('city_id')->on('cities')->references('id');
         });
