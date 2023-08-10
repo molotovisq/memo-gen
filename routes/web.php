@@ -26,3 +26,5 @@ Route::post('/teste', function (Request $request) {
 })->name('teste');
 
 Route::resource('clients', App\Http\Controllers\ClientController::class);
+
+Route::resource('panels', App\Http\Controllers\PanelController::class);
